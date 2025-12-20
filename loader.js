@@ -856,10 +856,10 @@ window.addEventListener('DOMContentLoaded', () => {
         if (themeIconSvg) {
             if (theme === 'light') {
                 // Show light bulb on for light mode
-                themeIconSvg.src = '../assets/animations/Light Bulb on.svg.svg';
+                themeIconSvg.src = 'assets/animations/Light Bulb on.svg.svg';
             } else {
                 // Show light bulb off for dark mode
-                themeIconSvg.src = '../assets/animations/Light Bulb off.svg.svg';
+                themeIconSvg.src = 'assets/animations/Light Bulb off.svg.svg';
             }
         }
     }
