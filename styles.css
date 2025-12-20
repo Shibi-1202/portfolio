@@ -557,17 +557,44 @@ section {
 .project-links {
     display: flex;
     gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .project-link {
-    color: var(--primary-accent);
-    text-decoration: underline;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #08A88A 0%, #121331 100%);
+    color: #FFFFFF;
+    text-decoration: none;
+    border-radius: 8px;
     font-weight: 600;
-    transition: var(--transition);
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #121331 0%, #08A88A 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
 }
 
 .project-link:hover {
-    color: var(--secondary-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(8, 168, 138, 0.4);
+}
+
+.project-link:hover::before {
+    opacity: 1;
 }
 
 /* Achievements Section */
