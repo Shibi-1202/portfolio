@@ -79,12 +79,16 @@ class NeuralLoader {
     initNetwork() {
         this.network = [];
         
-        // Calculate layout - more vertical spacing between nodes
-        const networkWidth = Math.min(this.width * 0.8, 1000);
-        const networkHeight = Math.min(this.height * 0.80, 650); // Reduced height for more spacing
+        // Responsive scaling based on screen size
+        const isMobile = this.width <= 768;
+        const isTablet = this.width > 768 && this.width <= 1024;
+        
+        // Calculate layout with responsive sizing
+        const networkWidth = isMobile ? this.width * 0.85 : Math.min(this.width * 0.7, 900);
+        const networkHeight = isMobile ? this.height * 0.5 : Math.min(this.height * 0.65, 550);
         const layerSpacing = networkWidth / (this.LAYERS.length - 1);
         const startX = (this.width - networkWidth) / 2;
-        const verticalOffset = -65; // Move network up more to make room for text
+        const verticalOffset = isMobile ? -this.height * 0.15 : -50;
         
         this.LAYERS.forEach((nodeCount, layerIdx) => {
             const layer = [];
@@ -93,11 +97,11 @@ class NeuralLoader {
             
             for (let i = 0; i < nodeCount; i++) {
                 layer.push({
-                    x: startX + layerIdx * layerSpacing, // Straight vertical line
+                    x: startX + layerIdx * layerSpacing,
                     y: startY + (i + 1) * nodeSpacing,
                     layerIdx: layerIdx,
                     activation: 0,
-                    radius: 7
+                    radius: isMobile ? 5 : 7
                 });
             }
             this.network.push(layer);
@@ -402,73 +406,97 @@ class NeuralLoader {
     }
     
     drawText() {
-        const textY = this.height * 0.87; // Moved down more
+        const isMobile = this.width <= 768;
+        const textY = isMobile ? this.height * 0.75 : this.height * 0.87;
         
-        // Single line text
-        this.ctx.font = 'bold 36px sans-serif';
+        // Responsive font size
+        const fontSize = isMobile ? 20 : 36;
+        this.ctx.font = `bold ${fontSize}px sans-serif`;
         this.ctx.textAlign = 'center';
         
-        // Static text parts
-        const beforeName = "You Have Entered ";
-        const afterName = "'s World!!";
-        
-        // Add blinking cursor to name if not complete
+        // Two-line text layout
+        const line1 = "You Have Entered";
         const showCursor = this.currentLetter < this.name.length && this.cursorVisible;
         const nameWithCursor = this.decryptedName + (showCursor ? '_' : '');
+        const line2 = `${nameWithCursor}'s World!!`;
         
-        // Calculate widths
-        const fullText = beforeName + nameWithCursor + afterName;
-        const totalWidth = this.ctx.measureText(fullText).width;
-        const beforeWidth = this.ctx.measureText(beforeName).width;
-        const nameWidth = this.ctx.measureText(nameWithCursor).width;
+        const lineHeight = fontSize * 1.4;
         
-        const startX = (this.width - totalWidth) / 2;
-        
-        // Draw "Hello, it's " (static)
+        // Draw first line (static)
         this.ctx.fillStyle = '#ffffff';
-        this.ctx.textAlign = 'left';
-        this.ctx.fillText(beforeName, startX, textY);
+        this.ctx.fillText(line1, this.width / 2, textY);
+        
+        // Draw second line with name highlighted
+        const line2Parts = line2.split(nameWithCursor);
+        const nameWidth = this.ctx.measureText(nameWithCursor).width;
+        const afterWidth = this.ctx.measureText(line2Parts[1] || '').width;
+        const totalWidth = this.ctx.measureText(line2).width;
+        const startX = (this.width - totalWidth) / 2;
         
         // Draw name with typewriter effect (highlighted in cyan)
         this.ctx.fillStyle = this.COLORS.pulse;
-        this.ctx.fillText(nameWithCursor, startX + beforeWidth, textY);
+        this.ctx.fillText(nameWithCursor, this.width / 2 - afterWidth / 2, textY + lineHeight);
         
-        // Draw " Here!!" (static)
+        // Draw "'s World!!" (static)
         this.ctx.fillStyle = '#ffffff';
-        this.ctx.fillText(afterName, startX + beforeWidth + nameWidth, textY);
+        this.ctx.fillText(line2Parts[1] || '', this.width / 2 + nameWidth / 2, textY + lineHeight);
     }
     
     initBackgroundParticles() {
+        // Initialize floating characters instead of particles
         this.bgParticles = [];
-        const particleCount = 150;
+        const isMobile = this.width <= 768;
+        const gridSize = isMobile ? 100 : 80;
+        const cols = Math.ceil(this.width / gridSize);
+        const rows = Math.ceil(this.height / gridSize);
         
-        for (let i = 0; i < particleCount; i++) {
-            this.bgParticles.push({
-                x: Math.random() * this.width,
-                y: Math.random() * this.height,
-                vx: (Math.random() - 0.5) * 0.3,
-                vy: (Math.random() - 0.5) * 0.3,
-                size: Math.random() * 2 + 1,
-                opacity: Math.random() * 0.5 + 0.3
-            });
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*+=<>?';
+        
+        for (let i = 0; i < cols; i++) {
+            for (let j = 0; j < rows; j++) {
+                const randomOffsetX = (Math.random() - 0.5) * 30;
+                const randomOffsetY = (Math.random() - 0.5) * 30;
+                const randomPhase = Math.random() * Math.PI * 2;
+                
+                this.bgParticles.push({
+                    baseX: i * gridSize + randomOffsetX,
+                    baseY: j * gridSize + randomOffsetY,
+                    x: i * gridSize + randomOffsetX,
+                    y: j * gridSize + randomOffsetY,
+                    char: characters[Math.floor(Math.random() * characters.length)],
+                    size: isMobile ? 14 : 16,
+                    opacity: Math.random() * 0.5 + 0.5,
+                    phase: randomPhase,
+                    amplitude: 40,
+                    frequency: 0.001,
+                    changeInterval: 3000 + Math.random() * 2000,
+                    lastChange: Date.now()
+                });
+            }
         }
     }
     
     updateBackgroundParticles() {
+        const time = Date.now();
+        
         this.bgParticles.forEach(p => {
-            p.x += p.vx;
-            p.y += p.vy;
+            // Wave animation
+            const wave = Math.sin(p.baseY * p.frequency + time * 0.001 + p.phase) * p.amplitude;
+            p.x = p.baseX + wave;
+            p.y = p.baseY;
             
-            // Wrap around edges
-            if (p.x < 0) p.x = this.width;
-            if (p.x > this.width) p.x = 0;
-            if (p.y < 0) p.y = this.height;
-            if (p.y > this.height) p.y = 0;
+            // Change character randomly
+            if (time - p.lastChange > p.changeInterval) {
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*+=<>?';
+                p.char = characters[Math.floor(Math.random() * characters.length)];
+                p.lastChange = time;
+                p.changeInterval = 3000 + Math.random() * 2000;
+            }
         });
     }
     
     drawBackground() {
-        // Dark blue gradient background
+        // Dark blue gradient background (same as main site)
         const gradient = this.ctx.createRadialGradient(
             this.width / 2, this.height / 2, 0,
             this.width / 2, this.height / 2, Math.max(this.width, this.height) / 2
@@ -479,35 +507,13 @@ class NeuralLoader {
         this.ctx.fillStyle = gradient;
         this.ctx.fillRect(0, 0, this.width, this.height);
         
-        // Draw particle connections
-        this.ctx.strokeStyle = this.COLORS.bgParticle;
-        this.ctx.lineWidth = 0.5;
-        
-        for (let i = 0; i < this.bgParticles.length; i++) {
-            for (let j = i + 1; j < this.bgParticles.length; j++) {
-                const p1 = this.bgParticles[i];
-                const p2 = this.bgParticles[j];
-                const dx = p1.x - p2.x;
-                const dy = p1.y - p2.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                
-                if (dist < 120) {
-                    this.ctx.globalAlpha = (1 - dist / 120) * 0.15;
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(p1.x, p1.y);
-                    this.ctx.lineTo(p2.x, p2.y);
-                    this.ctx.stroke();
-                }
-            }
-        }
-        
-        // Draw particles
+        // Draw floating characters (same as main site)
         this.bgParticles.forEach(p => {
-            this.ctx.fillStyle = this.COLORS.bgParticle;
-            this.ctx.globalAlpha = p.opacity;
-            this.ctx.beginPath();
-            this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            this.ctx.fill();
+            this.ctx.font = `${p.size}px monospace`;
+            this.ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity * 0.15})`;
+            this.ctx.textAlign = 'center';
+            this.ctx.textBaseline = 'middle';
+            this.ctx.fillText(p.char, p.x, p.y);
         });
         
         this.ctx.globalAlpha = 1;
