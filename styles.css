@@ -44,12 +44,6 @@ img, video, canvas, svg {
     --bg-gradient-start: #e0e7ff;
     --bg-gradient-mid: #f3f4f6;
     --bg-gradient-end: #fce7f3;
-    
-    /* Fluid typography - scales between min and max viewport widths */
-    --fluid-min-width: 320;
-    --fluid-max-width: 2560;
-    --fluid-screen: 100vw;
-    --fluid-bp: calc((var(--fluid-screen) - var(--fluid-min-width) / 16 * 1rem) / (var(--fluid-max-width) - var(--fluid-min-width)));
 }
 
 [data-theme="dark"] {
@@ -337,27 +331,6 @@ section, nav, footer {
     bottom: 20%;
     left: 5%;
     transition-delay: 0.25s;
-}
-
-@keyframes morph-1 {
-    0%, 100% {
-        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    }
-}
-
-@keyframes morph-2 {
-    0%, 100% {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    }
-}
-
-@keyframes rotate-slow {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 .hero h1 {

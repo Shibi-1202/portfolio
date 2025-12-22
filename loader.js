@@ -700,18 +700,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Navbar background change on scroll
-const navbar = document.querySelector('.navbar');
-if (navbar) {
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        } else {
-            navbar.style.background = '#ffffff';
-        }
-    });
-}
-
 // Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
