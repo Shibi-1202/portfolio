@@ -75,9 +75,10 @@
     <section id="hero" class="hero">
         <!-- Logo -->
         <div class="logo-container">
-            <img src="assets/logo/Logo-dark.svg" alt="Logo" class="logo logo-dark">
-            <img src="assets/logo/Logo-light.svg" alt="Logo" class="logo logo-light">
-            <img src="assets/favicon.svg" alt="Logo" class="logo logo-mobile">
+            <img src="assets/logo/Logo-dark.svg" alt="Logo" class="logo logo-dark logo-desktop">
+            <img src="assets/logo/Logo-light.svg" alt="Logo" class="logo logo-light logo-desktop">
+            <img src="assets/logo/mlogo-dark.svg" alt="Logo" class="logo logo-dark logo-mobile">
+            <img src="assets/logo/mlogo-light.svg" alt="Logo" class="logo logo-light logo-mobile">
         </div>
         
         <div class="container">
@@ -322,6 +323,15 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="cardContainer">
+                        <lottie-player
+                            src="assets/animations/Hand tap.json"
+                            background="transparent"
+                            speed="1"
+                            style="width: 100px; height: 100px;"
+                            loop
+                            autoplay
+                            class="card-lottie-animation">
+                        </lottie-player>
                         <div class="profileDiv">
                             <img src="assets/images/profile-picture.svg" alt="Profile" class="profile-image">
                         </div>
@@ -352,10 +362,12 @@
                 </div>
                 <form class="contact-form" 
                     action="https://formspree.io/f/mzdpjgzg"
-                    method="POST">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    method="POST"
+                    novalidate
+                    autocomplete="off">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
                     <button type="submit" class="submit-button">Send Message</button>
                 </form>
             </div>
@@ -371,7 +383,53 @@
         </div>
     </footer>
 
+    <!-- Success Message Toast -->
+    <div id="success-toast" class="success-toast">
+        <svg class="success-tick" viewBox="0 0 52 52">
+            <circle class="success-tick-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="success-tick-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+        <p class="success-message">Thanks! I'll get back to you soon.</p>
+    </div>
+
     <script src="loader.js"></script>
     <script src="floating-characters.js"></script>
+    <script>
+        const contactForm = document.querySelector('.contact-form');
+        const successToast = document.getElementById('success-toast');
+
+        contactForm.addEventListener('submit', async function (e) {
+            e.preventDefault(); // fully stops browser default submit
+
+            const formData = new FormData(contactForm);
+
+            try {
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // show custom success toast
+                successToast.classList.add('show');
+
+                // reset form
+                contactForm.reset();
+
+                // auto-hide toast after 5s
+                setTimeout(() => {
+                successToast.classList.remove('show');
+                }, 5000);
+            }
+            } catch (error) {
+            // silently fail (no alerts)
+            console.error(error);
+            }
+        });
+    </script>
+
 </body>
 </html>

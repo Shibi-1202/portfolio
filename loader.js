@@ -646,23 +646,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Form submission handler
     const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const name = contactForm.querySelector('input[type="text"]').value;
-            const email = contactForm.querySelector('input[type="email"]').value;
-            const message = contactForm.querySelector('textarea').value;
-            
-            // Here you would typically send the data to a server
-            console.log('Form submitted:', { name, email, message });
-            
-            // Show success message
-            alert('Thank you for your message! I will get back to you soon.');
-            
-            // Reset form
-            contactForm.reset();
+    const successToast = document.getElementById('success-toast');
+
+    if (contactForm && successToast) {
+        contactForm.addEventListener('submit', async function (e) {
+            e.preventDefault(); // fully stops browser default submit
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // show custom success toast
+                    successToast.classList.add('show');
+
+                    // reset form
+                    contactForm.reset();
+
+                    // auto-hide toast after 5s
+                    setTimeout(() => {
+                        successToast.classList.remove('show');
+                    }, 5000);
+                }
+            } catch (error) {
+                // silently fail (no alerts)
+                console.error(error);
+            }
         });
     }
 });

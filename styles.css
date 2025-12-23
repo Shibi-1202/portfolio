@@ -212,27 +212,33 @@ section, nav, footer {
     height: 60px;
     width: auto;
     transition: opacity 0.3s ease;
+}
+
+/* Desktop logos - show by default on desktop */
+.logo-desktop {
     display: block;
 }
 
-.logo-dark {
-    display: none;
-}
-
-.logo-light {
-    display: block;
-}
-
+/* Mobile logos - ALWAYS hide on desktop */
 .logo-mobile {
+    display: none !important;
+}
+
+/* Light mode - show light logo (desktop only) */
+.logo-desktop.logo-dark {
     display: none;
 }
 
-/* Dark mode logo */
-[data-theme="dark"] .logo-dark {
+.logo-desktop.logo-light {
     display: block;
 }
 
-[data-theme="dark"] .logo-light {
+/* Dark mode - show dark logo (desktop only) */
+[data-theme="dark"] .logo-desktop.logo-dark {
+    display: block;
+}
+
+[data-theme="dark"] .logo-desktop.logo-light {
     display: none;
 }
 
@@ -244,16 +250,35 @@ section, nav, footer {
     }
     
     .logo {
-        height: 35px;
+        height: 40px;
     }
     
-    .logo-dark,
-    .logo-light {
+    /* Hide desktop logos on mobile */
+    .logo-desktop {
         display: none !important;
     }
     
+    /* Show mobile logos on mobile */
     .logo-mobile {
         display: block !important;
+    }
+    
+    /* Light mode mobile */
+    .logo-mobile.logo-light {
+        display: block !important;
+    }
+    
+    .logo-mobile.logo-dark {
+        display: none !important;
+    }
+    
+    /* Dark mode mobile */
+    [data-theme="dark"] .logo-mobile.logo-dark {
+        display: block !important;
+    }
+    
+    [data-theme="dark"] .logo-mobile.logo-light {
+        display: none !important;
     }
 }
 
@@ -1026,6 +1051,14 @@ section {
         0 0 40px rgba(102, 126, 234, 0.2);
 }
 
+.card-lottie-animation {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    z-index: 10;
+    pointer-events: none;
+}
+
 .profileDiv {
     z-index: 2;
     width: 100%;
@@ -1262,6 +1295,84 @@ section {
     display: block;
 }
 
+/* Success Toast Notification */
+.success-toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--card-bg);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background-image: 
+        linear-gradient(var(--card-bg), var(--card-bg)),
+        linear-gradient(135deg, #08A88A, #667eea);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 
+        0 0 20px rgba(8, 168, 138, 0.3),
+        0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 9999;
+    max-width: 350px;
+}
+
+.success-toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.success-tick {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.success-tick-circle {
+    stroke: #08A88A;
+    stroke-width: 2;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    animation: none;
+}
+
+.success-toast.show .success-tick-circle {
+    animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.success-tick-check {
+    stroke: #08A88A;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    animation: none;
+}
+
+.success-toast.show .success-tick-check {
+    animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+@keyframes stroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.success-message {
+    margin: 0;
+    color: var(--text-color);
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
 /* Footer */
 .footer {
     background: var(--card-bg);
@@ -1317,6 +1428,24 @@ section {
     
     .socials {
         width: 80%;
+    }
+    
+    /* Success toast mobile positioning */
+    .success-toast {
+        bottom: 20px;
+        right: 20px;
+        left: 20px;
+        max-width: calc(100% - 40px);
+        padding: 15px 20px;
+    }
+    
+    .success-tick {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .success-message {
+        font-size: 0.9rem;
     }
     
     /* Mobile: Show content always with image at top for project cards */
