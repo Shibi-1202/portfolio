@@ -27,11 +27,19 @@ class NeuralLoader {
         // Network topology
         this.LAYERS = [18, 15, 10, 5];
         
-        // Canvas setup
+        // Canvas setup with high DPI support for better clarity
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        this.canvas.width = this.width;
-        this.canvas.height = this.height;
+        this.dpr = window.devicePixelRatio || 1;
+        
+        // Set canvas size with device pixel ratio for crisp rendering
+        this.canvas.width = this.width * this.dpr;
+        this.canvas.height = this.height * this.dpr;
+        this.canvas.style.width = this.width + 'px';
+        this.canvas.style.height = this.height + 'px';
+        
+        // Scale context to match device pixel ratio
+        this.ctx.scale(this.dpr, this.dpr);
         
         // Animation state
         this.network = [];
@@ -83,17 +91,22 @@ class NeuralLoader {
         const isMobile = this.width <= 768;
         const isTablet = this.width > 768 && this.width <= 1024;
         
-        // Calculate layout with responsive sizing
-        const networkWidth = isMobile ? this.width * 0.85 : Math.min(this.width * 0.7, 900);
-        const networkHeight = isMobile ? this.height * 0.5 : Math.min(this.height * 0.65, 550);
+        // Calculate layout with responsive sizing and increased layer spacing
+        const networkWidth = isMobile ? this.width * 0.85 : Math.min(this.width * 0.75, 1000);
+        // Adjusted height to fit mobile screens better
+        const networkHeight = isMobile ? this.height * 0.5 : Math.min(this.height * 0.75, 650);
         const layerSpacing = networkWidth / (this.LAYERS.length - 1);
         const startX = (this.width - networkWidth) / 2;
-        const verticalOffset = isMobile ? -this.height * 0.15 : -50;
+        // Reduced vertical offset for mobile to keep content on screen
+        const verticalOffset = isMobile ? -this.height * 0.05 : -60;
         
         this.LAYERS.forEach((nodeCount, layerIdx) => {
             const layer = [];
-            const nodeSpacing = networkHeight / (nodeCount + 1);
-            const startY = (this.height - networkHeight) / 2 + verticalOffset;
+            // Increase spacing for first two layers (18 and 15 nodes)
+            const spacingMultiplier = (layerIdx === 0 || layerIdx === 1) ? 1.2 : 1;
+            const adjustedHeight = networkHeight * spacingMultiplier;
+            const nodeSpacing = adjustedHeight / (nodeCount + 1);
+            const startY = (this.height - adjustedHeight) / 2 + verticalOffset;
             
             for (let i = 0; i < nodeCount; i++) {
                 layer.push({
@@ -101,7 +114,7 @@ class NeuralLoader {
                     y: startY + (i + 1) * nodeSpacing,
                     layerIdx: layerIdx,
                     activation: 0,
-                    radius: isMobile ? 5 : 7
+                    radius: isMobile ? 6 : 7
                 });
             }
             this.network.push(layer);
@@ -295,7 +308,8 @@ class NeuralLoader {
     }
     
     drawConnections() {
-        this.ctx.lineWidth = 1.5;
+        const isMobile = this.width <= 768;
+        this.ctx.lineWidth = isMobile ? 2 : 1.5;
         
         // Draw colorful connections between adjacent layers
         this.connections.forEach(conn => {
@@ -348,6 +362,7 @@ class NeuralLoader {
     }
     
     drawNodes() {
+        const isMobile = this.width <= 768;
         this.network.forEach(layer => {
             layer.forEach(node => {
                 // Bright glow for highly activated nodes
@@ -383,9 +398,9 @@ class NeuralLoader {
                     this.ctx.fill();
                 }
                 
-                // Outline (always visible)
+                // Outline (always visible) - thicker on mobile
                 this.ctx.strokeStyle = this.COLORS.neuron;
-                this.ctx.lineWidth = 1.5;
+                this.ctx.lineWidth = isMobile ? 2 : 1.5;
                 this.ctx.stroke();
                 
                 // Decay
@@ -578,8 +593,18 @@ class NeuralLoader {
     resize() {
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        this.canvas.width = this.width;
-        this.canvas.height = this.height;
+        this.dpr = window.devicePixelRatio || 1;
+        
+        // Update canvas with device pixel ratio
+        this.canvas.width = this.width * this.dpr;
+        this.canvas.height = this.height * this.dpr;
+        this.canvas.style.width = this.width + 'px';
+        this.canvas.style.height = this.height + 'px';
+        
+        // Reset scale
+        this.ctx.setTransform(1, 0, 0, 1, 0, 0);
+        this.ctx.scale(this.dpr, this.dpr);
+        
         this.initNetwork();
         this.initConnections();
         this.initBackgroundParticles();
@@ -608,9 +633,12 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - 80; // Offset for better positioning
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
                 });
             }
         });

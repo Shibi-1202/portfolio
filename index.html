@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portfolio - Showcasing my work and skills">
-    <title>Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <title>Shibi | Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="assets/Favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
@@ -73,14 +73,36 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="assets/logo/Logo-dark.svg" alt="Logo" class="logo logo-dark">
+            <img src="assets/logo/Logo-light.svg" alt="Logo" class="logo logo-light">
+            <img src="assets/favicon.ico" alt="Logo" class="logo logo-mobile">
+        </div>
+        
         <div class="container">
             <div class="hero-wrapper">
                 <div class="hero-content">
                     <h1>Hi! I'm, <br>
                         <span class="highlight">Shibi Chakaravarthy</span></h1>
                     <p class="hero-subtitle" id="typing-text"></p>
-                    <p class="hero-description">Creating beautiful and functional digital experiences</p>
-                    <a href="#contact" class="cta-button">Get In Touch</a>
+                    <p class="hero-description">Designing with logic. Engineering with purpose.</p>
+                    <p class="hero-tagline">I enjoy building projects that turn ideas into practical, intelligent solutions.Currently learning and applying AI and ML concepts through real projects. Open to internships and collaborations.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="cta-button">Get In Touch</a>
+                        <a href="https://github.com/Shibi-1202" target="_blank" rel="noopener noreferrer" class="cta-button cta-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        <a href="https://www.linkedin.com/in/shibi-chakravarthy/" target="_blank" rel="noopener noreferrer" class="cta-button cta-secondary">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </div>
                 </div>
                 <div class="hero-image-container">
                     <div class="abstract-shapes">
@@ -101,32 +123,105 @@
         <div class="container">
             <h2 class="section-title">Skills & Competences</h2>
             <div class="skills-grid">
+                <!-- Programming Languages -->
                 <div class="skill-card">
-                    <h3>Frontend Development</h3>
-                    <ul>
-                        <li>HTML5 & CSS3</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>React / Vue</li>
-                        <li>Responsive Design</li>
-                    </ul>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="skill-card__icon">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                    <div class="skill-card__content">
+                        <h3 class="skill-card__title">Programming Languages</h3>
+                        <ul class="skill-card__list">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Python
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Java
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                PostgreSQL
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
+                <!-- Data Science/ML -->
                 <div class="skill-card">
-                    <h3>Backend Development</h3>
-                    <ul>
-                        <li>Node.js</li>
-                        <li>Python</li>
-                        <li>Database Management</li>
-                        <li>API Development</li>
-                    </ul>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="skill-card__icon">
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    <div class="skill-card__content">
+                        <h3 class="skill-card__title">Data Science & ML</h3>
+                        <ul class="skill-card__list">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                EDA
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Supervised Learning
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Unsupervised Learning
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+
+                <!-- Libraries -->
                 <div class="skill-card">
-                    <h3>Tools & Technologies</h3>
-                    <ul>
-                        <li>Git & GitHub</li>
-                        <li>VS Code</li>
-                        <li>Figma</li>
-                        <li>Docker</li>
-                    </ul>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="skill-card__icon">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                        <line x1="8" y1="21" x2="16" y2="21"></line>
+                        <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    <div class="skill-card__content">
+                        <h3 class="skill-card__title">Libraries</h3>
+                        <ul class="skill-card__list">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Numpy, Pandas
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Scikit-learn
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Matplotlib, Seaborn
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="skill-bullet">
+                                    <circle cx="12" cy="12" r="3"/>
+                                </svg>
+                                Joblib, Streamlit
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,42 +232,43 @@
         <div class="container">
             <h2 class="section-title">Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/assets/images/Health-diagnosis.png" alt="Project 1">
-                    </div>
-                    <div class="project-info">
-                        <h3>Medical Diagnosis with ML</h3>
-                        <p>A Machine Learning–based diagnostic tool for predicting six medical conditions — COVID-19, Influenza, Dengue, Malaria, Pneumonia, and Normal — using symptoms, vital signs, and laboratory parameters.</p>
-                        <div class="project-links">
-                            <a href="https://medical-diagnostic-prediction-project-presentation.streamlit.app/" class="project-link" target="_blank" rel="noopener">View Demo</a>
-                            <a href="https://github.com/Shibi-1202/Medical-Diagnostic-Prediction" class="project-link" target="_blank" rel="noopener">GitHub</a>
+                <!-- Project 1: Medical Diagnosis -->
+                <div class="card">
+                    
+                    <img src="assets/images/Health-diagnosis.png" alt="Medical Diagnosis" class="card__image">
+                    <div class="card__content">
+                        <p class="card__title">Medical Diagnosis with ML</p>
+                        <p class="card__description">A Machine Learning–based diagnostic tool for predicting six medical conditions — COVID-19, Influenza, Dengue, Malaria, Pneumonia, and Normal — using symptoms, vital signs, and laboratory parameters.</p>
+                        <div class="card__buttons">
+                            <a href="https://medical-diagnostic-prediction-project-presentation.streamlit.app/" target="_blank" rel="noopener" class="card__button">Live Demo</a>
+                            <a href="https://github.com/Shibi-1202/Medical-Diagnostic-Prediction" target="_blank" rel="noopener" class="card__button secondary">Source Code</a>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/assets/images/Sudoku.png" alt="Project 2">
-                    </div>
-                    <div class="project-info">
-                        <h3>Sudoku Solver</h3>
-                        <p>Sudoku Solver A Python-based GUI Sudoku Solver built using Tkinter. This tool allows users to input a Sudoku puzzle, validate it, and solve the puzzle.The program visually highlights inputs and offers functionalities to reset the board or attempt to solve the puzzle automatically.</p>
-                        <div class="project-links">
-                            <a href="https://sudoku-solver-rmyy.onrender.com" class="project-link" target="_blank" rel="noopener">View Demo</a>
-                            <a href="https://github.com/Shibi-1202/Sudoku-Solver" class="project-link" target="_blank" rel="noopener">GitHub</a>
+
+                <!-- Project 2: Sudoku Solver -->
+                <div class="card">
+                    
+                    <img src="assets/images/Sudoku.png" alt="Sudoku Solver" class="card__image">
+                    <div class="card__content">
+                        <p class="card__title">Sudoku Solver</p>
+                        <p class="card__description">A Python-based GUI Sudoku Solver built using Tkinter. This tool allows users to input a Sudoku puzzle, validate it, and solve the puzzle. The program visually highlights inputs and offers functionalities to reset the board or attempt to solve the puzzle automatically.</p>
+                        <div class="card__buttons">
+                            <a href="https://sudoku-solver-rmyy.onrender.com" target="_blank" rel="noopener" class="card__button">Live Demo</a>
+                            <a href="https://github.com/Shibi-1202/Sudoku-Solver" target="_blank" rel="noopener" class="card__button secondary">Source Code</a>
                         </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="/assets/images/coming-soon.png" alt="Project 3">
-                    </div>
-                    <div class="project-info">
-                        <h3>In Developemnet</h3>
-                        <p>Learning Multiple things to showcase a keen understanding in the project i am building currently.</p>
-                        <div class="project-links">
-                            <!-- <a href="#" class="project-link">View Demo</a>
-                            <a href="#" class="project-link">GitHub</a> -->
+
+                <!-- Project 3: In Development -->
+                <div class="card">
+                    
+                    <img src="assets/images/coming-soon.png" alt="In Development" class="card__image">
+                    <div class="card__content">
+                        <p class="card__title">In Development</p>
+                        <p class="card__description">Learning multiple things to showcase a keen understanding in the project I am building currently. Stay tuned for exciting updates!</p>
+                        <div class="card__buttons">
+                            <button class="card__button" disabled style="opacity: 0.5; cursor: not-allowed;">Coming Soon</button>
                         </div>
                     </div>
                 </div>
@@ -186,20 +282,35 @@
             <h2 class="section-title">Achievements</h2>
             <div class="achievements-grid">
                 <div class="achievement-card">
-                    <img src="../assets/certificates/cert1.jpg" alt="Certificate 1">
-                    <h3>Certification Name</h3>
-                    <p>Issuing Organization - 2024</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="achievement-card__icon">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                    <img src="assets/certificates/AMZMLSS25.png" alt="Certificate 1" class="achievement-card__image">
+                    <div class="achievement-card__content">
+                        <h3 class="achievement-card__title">Amazon Machine Learning Summer School</h3>
+                        <p class="achievement-card__description">AMZMLSS25 (Amazon Machine Learning Summer School 2025) was a selective training program by Amazon focused on core and advanced Machine Learning concepts. The program emphasized model design, optimization, and evaluation through real-world problem scenarios. It strengthened my understanding of applying ML techniques at scale using industry best practices.</p>
+                    </div>
+                </div>
+                <!-- <div class="achievement-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="achievement-card__icon">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                    <img src="../assets/certificates/cert2.jpg" alt="Certificate 2" class="achievement-card__image">
+                    <div class="achievement-card__content">
+                        <h3 class="achievement-card__title">Award Title</h3>
+                        <p class="achievement-card__description">Event/Competition - 2024</p>
+                    </div>
                 </div>
                 <div class="achievement-card">
-                    <img src="../assets/certificates/cert2.jpg" alt="Certificate 2">
-                    <h3>Award Title</h3>
-                    <p>Event/Competition - 2024</p>
-                </div>
-                <div class="achievement-card">
-                    <img src="../assets/certificates/cert3.jpg" alt="Certificate 3">
-                    <h3>Achievement Title</h3>
-                    <p>Description - 2024</p>
-                </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="achievement-card__icon">
+                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                    </svg>
+                    <img src="../assets/certificates/cert3.jpg" alt="Certificate 3" class="achievement-card__image">
+                    <div class="achievement-card__content">
+                        <h3 class="achievement-card__title">Achievement Title</h3>
+                        <p class="achievement-card__description">Description - 2024</p>
+                    </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -210,28 +321,38 @@
             <h2 class="section-title">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <p>Feel free to reach out for collaborations or just a friendly chat!</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <strong>Email:</strong>
-                            <a href="mailto:your.email@example.com">your.email@example.com</a>
+                    <div class="cardContainer">
+                        <div class="profileDiv">
+                            <img src="assets/images/profile-picture.svg" alt="Profile" class="profile-image">
                         </div>
-                        <div class="contact-item">
-                            <strong>Phone:</strong>
-                            <a href="tel:+1234567890">+123 456 7890</a>
+                        <div class="infoDiv">
+                            <div class="nameDiv">
+                                <p class="name">Shibi Chakaravarthy</p>
+                                <p class="role">AI & ML Engineer</p>
+                            </div>
+                            <div class="socialDiv">
+                                <a href="https://github.com/Shibi-1202" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                    <svg viewBox="0 0 496 512" class="socials github">
+                                        <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path>
+                                    </svg>
+                                </a>
+                                <a href="https://www.linkedin.com/in/shibi-chakravarthy/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                    <svg viewBox="0 0 448 512" class="socials linkdin">
+                                        <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
+                                    </svg>
+                                </a>
+                                <a href="mailto:shibih.works@gmail.com" aria-label="Gmail">
+                                    <svg viewBox="0 0 512 512" class="socials gmail">
+                                        <path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
-                        <div class="contact-item">
-                            <strong>Location:</strong>
-                            <span>Your City, Country</span>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" aria-label="GitHub">GitHub</a>
-                        <a href="#" aria-label="LinkedIn">LinkedIn</a>
-                        <a href="#" aria-label="Twitter">Twitter</a>
                     </div>
                 </div>
-                <form class="contact-form">
+                <form class="contact-form" 
+                    action="https://formspree.io/f/mzdpjgzg"
+                    method="POST">
                     <input type="text" placeholder="Your Name" required>
                     <input type="email" placeholder="Your Email" required>
                     <textarea placeholder="Your Message" rows="5" required></textarea>
@@ -244,8 +365,9 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
-            <a href="https://lordicon.com/">Icons by Lordicon.com</a>
+            <p>Designed and Built by Shibi Chakaravrthy H </p>
+            <p>&copy; 2025 All rights reserved.</p>
+            <!-- <a href="https://lordicon.com/">Icons by Lordicon.com</a> -->
         </div>
     </footer>
 
